@@ -53,6 +53,12 @@ namespace PolicyServer.Local
                 if (IdentityRoles.Any(x => roles.Contains(x))) return true;
             }
 
+            var identityRoles = user.FindAll(ClaimTypes.Role).Select(x => x.Value);
+            if (identityRoles.Any())
+            {
+                if (IdentityRoles.Any(x => identityRoles.Contains(x))) return true;
+            }
+
             return false;
         }
     }
